@@ -25,7 +25,7 @@ services:
       - django
 ## DJANGO
   django:
-    image: amgxv/restt:latest
+    image: amgxv/mossegada_web
     command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic --noinput && gunicorn -k gevent RestaurantsProject.wsgi -b 0.0.0.0:8000"
     environment:
       - DB_NAME='DATABASE'
