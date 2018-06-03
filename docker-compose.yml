@@ -1,0 +1,63 @@
+version: '3.3'  
+services:
+## POSTGRES DATABASE  
+  postgres:
+    image: postgres:latest
+    environment:
+      - POSTGRES_DB='DATABASE'
+      - POSTGRES_USER='USERNAME'
+      - POSTGRES_PASSWORD='PASSWORD'
+## NGINX-REVERSE
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=nginx"
+      - "traefik.frontend.rule=Host:'HOST'"
+    volumes:
+      - ./mossegada_app:/mossegada_app
+      - ./config/nginx/:/etc/nginx/conf.d/
+      - /mossegada_app/RestaurantsProject/staticfiles:/static
+      - /mossegada_app/RestaurantsProject/web_restaurants/media:/media
+    depends_on:
+      - django
+## DJANGO
+  django:
+    image: amgxv/restt:latest
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic --noinput && gunicorn -k gevent RestaurantsProject.wsgi -b 0.0.0.0:8000"
+    environment:
+      - DB_NAME='DATABASE'
+      - DB_USER='USERNAME'
+      - DB_PASS='PASSWORD'
+      - DB_HOST='HOSTNAME'
+      - DB_PORT='PORT'
+      - SMTP_HOST='SMTP'
+      - SMTP_USER='USER'
+      - SMTP_PASS='PASSWORD'
+      - WEB_HOST='HOST'
+      - GMAPS_API='API_KEY'
+    depends_on:
+      - postgres
+    volumes:
+      - ./mossegada_app:/mossegada_app
+      - /mossegada_app/RestaurantsProject/staticfiles:/static
+      - /mossegada_app/RestaurantsProject/web_restaurants/media:/media
+## SMTP
+  smtp:
+    image: catatnight/postfix
+    environment:
+      - maildomain='DOMAIN'
+      - smtp_user='USERNAME:PASSWORD'
+## TRAEFIK
+  traefik:
+    image: traefik:tetedemoine-alpine
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik/traefik.toml:/etc/traefik/traefik.toml:ro
+      - ./traefik/acme:/etc/traefik/acme
+    ports:
+     - "80:80"
+     - "443:443"
+     - "8080:8080"

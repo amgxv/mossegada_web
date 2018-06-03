@@ -1,0 +1,226 @@
+{% extends 'base.html' %}
+{% block title %}
+{% if restaurant_q %}
+<title>{{restaurant_q.name}} - Mossegada</title>
+{% endif %}
+{% endblock %}
+{% block content %}
+<!-- Si hi ha restaurant... -->
+{% if restaurant_q %}
+<br>
+<div class="container rest">
+    <div class="card mb-6">
+        <img class="card-img-top img-hack" src='{% if restaurant_q.image %}
+        {{ restaurant_q.image.url }}
+        {% else %}
+        null
+        {% endif %}'
+        alt="{{ restaurant_q.name }}">
+        <div class="card-body">
+            <h4 class="card-title">{{ restaurant_q.name }}</h4>
+            <p class="card-text"><i class="material-icons align-bottom">place</i>{{ restaurant_q.address }}</p>
+            <p class="card-text"><i class="material-icons align-bottom">phone</i>{{ restaurant_q.phone }}</p>
+            <p class="card-text"><i class="material-icons align-bottom">restaurant_menu</i>{{ restaurant_q.typeR_fk }}</p>
+            <p class="card-text"><i class="material-icons align-bottom">star</i>{{ avg_rat.rating__avg }}</p>
+            <p class="card-text"><i class="material-icons align-bottom">public</i><a href="{{ restaurant_q.website }}"> Vés a la pàgina web...</a></p>
+        </div>
+    </div>
+    
+    <div id="google_map"></div>
+    <hr>
+    
+    <!-- Si el restaurant té comentaris -->
+    {% if comments %}
+    
+    <div id="comments">
+        <div class="card-columns">
+            <!-- Per cada comentari que hi hagi el fica a un card-->
+            {% for comment in comments %}
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col">
+                            <i class="material-icons align-bottom">person</i>
+                            <a href="/profile/{{ comment.user_fk }}">{{ comment.user_fk }}</a>
+                        </div>
+                        <div class="col text-right">
+                            <i class="material-icons align-bottom">star</i>
+                            {{ comment.rating }}
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    {% if comment.image %}
+                    <div class="image_comments">
+                        <a href="{{ comment.image.url }}">
+                            <img class="card-img-top mb-3" src="{{ comment.image.url }}">
+                        </a>
+                    </div>
+                    {% endif %}
+                    {{ comment.comment }}
+                    <br>
+                    <small>{{ comment.date }}</small>
+                </div>
+            </div>
+            <!-- Final del for -->
+            {% endfor %}
+        </div>
+    </div>
+    
+    <!-- Si no hi ha comentaris, mostra una alerta-->
+    {% else %}
+    <div class="alert alert-warning text-center" role="alert">
+        Encara no s'ha comentat res <strong>:(</strong>
+    </div>
+    {% endif %}
+    
+    
+    <!-- Si hi ha comentaris, activa la paginació -->
+    {% if comments %}
+    <nav aria-label="Pagination">
+        <ul class="pagination justify-content-end">
+            {% if comments.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="/restaurant/{{ restaurant_q.id }}/?c=1#comments">Primer</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="{{ prev_page }}#comments">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Anterior</span>
+                </a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Anterior</span>
+                </a>
+            </li>
+            {% endif %} {% if comments.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="{{ prev_page }}#comments">{{ comments.previous_page_number }}</a>
+            </li>
+            {% endif %}
+            
+            <li class="page-item disabled">
+                <a class="page-link" href="/restaurant/{{ restaurant_q.id }}/?c={{ comments.number }}#comments">{{ comments.number }}</a>
+            </li>
+            
+            {% if comments.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="{{ next_page }}#comments">{{ comments.next_page_number }}</a>
+            </li>
+            {% endif %} {% if comments.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="{{ next_page }}#comments">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Següent</span>
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="/restaurant/{{ restaurant_q.id }}/?c={{ comments.paginator.num_pages }}#comments">Darrer</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="#">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Següent</span>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    
+    
+    {% else %}
+    {% endif %}
+    
+    
+    <!-- Si l'usuari s'ha autenticat, mostra un formulari per afegir comentaris -->
+    {% if user.is_authenticated %}
+    
+    <div id="insert_comment">
+        
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header bg-warning">
+                        <div class="row">
+                            <div class="col">
+                                Afegeix un comentari
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-text">
+                        <form class="col-md-12" method="POST" action="#insert_comment" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <small>Conta la teva experiència :</small>
+                                            <textarea class="form-control" placeholder="Opinió" name="comment" rows="3" required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col mb-2">
+                                        <small>Posa una nota : </small>
+                                        <input type="number" min="1" max="10" class="form-control form-control-sm col-sm-2" placeholder="Nota" name="rating" required></input>
+                                    </div>
+                                </div>
+                                
+                                
+                                <div class="row">
+                                    <div class="col mb-2">
+                                        <small>Afegeix una imatge :</small>
+                                        <input type="file" class="form-control form-control-sm" name="image"></input>
+                                    </div>
+                                    <div class="col">
+                                        <button class="btn btn-lg bg-warning float-right mt-2">Comenta</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Si l'usuari no ha iniciat sessió, mostra una alerta-->
+{% else %}
+<div class="alert alert-success text-center" role="alert">
+    <a href="/accounts/login/">Inicia sessió</a> per afegir una valoració.
+</div>
+{% endif %}
+
+<!-- Si el restaurant té latitud i longitud, mostra la ubicació amb un script de Google Maps -->
+{% if restaurant_q.latitude and restaurant_q.longitude %}
+<script>
+    function initMap() {
+        var uluru = { lat: +'{{ restaurant_q.latitude }}', lng: +'{{ restaurant_q.longitude }}' };
+        var map = new google.maps.Map(document.getElementById('google_map'), {
+            zoom: 17,
+            center: uluru
+        });
+        var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+        });
+    }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={% if google_maps_api %}{{ google_maps_api }}{% endif %}&callback=initMap">
+</script>
+{% endif %}
+
+
+<!-- Si qualque cosa ha anat malament, mostra una alerta-->
+{% else %}
+<div class="alert alert-danger m-5" role="alert">
+    No s'ha pogut carregar el restaurant
+</div>
+<!-- Final de l'if de restaurants_q-->
+{% endif %}
+{% endblock %}

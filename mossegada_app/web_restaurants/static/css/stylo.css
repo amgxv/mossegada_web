@@ -1,0 +1,117 @@
+.portfolio-item {
+    margin-bottom: 15px;
+}
+
+.pagination {
+    margin-bottom: 30px;
+}
+
+.card-img-top {
+    max-height: 180px;
+    object-fit: cover;
+}
+
+.img-hack {
+    max-height: 450px;
+    object-fit: cover;
+}
+
+.col-lg-4 {
+    margin-bottom: 20px;
+}
+
+.pb-5, .py-5 {
+    padding-bottom: 1rem !important;
+}
+
+.pt-5, .py-5 {
+    padding-top: 1rem !important;
+}
+
+.rest {
+    margin-bottom: 20px;
+}
+
+.dropdown-menu {
+    right: 0;
+    left: auto;
+}
+
+.btn-group {
+    margin-left: 10px;
+}
+
+.navb{
+    margin: 8px;
+    border-radius: 10px;
+}
+
+.loginform_style{
+    width : 500px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.loginlogo{
+    width: 50%;
+    margin: 10px;
+}
+
+.logoutlogo{
+    width: 50%;
+    margin: 20px;
+}
+
+.logout_d{
+    width : 600px;
+    position: relative;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.filter_query{
+    margin-right: 10px;
+}
+
+/*
+.pagin
+{
+    width: 100%;
+}
+*/
+
+.center_forms{
+    margin: 0 auto;
+}
+
+.userdropdown{
+    margin-right: 10px;
+}
+
+.passwordreset{
+    margin: 0 auto;
+}
+
+.image_comments{
+    margin-top:-1.25rem; 
+    margin-left:-1.25rem; 
+    margin-right: -1.25rem
+}
+
+/*
+.edit_form{
+    width: 650px;
+}
+*/
+
+#google_map{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+    height: 300px;
+    border-radius: 5px;
+}
+
+.card-columns{
+    column-count: 2;
+}

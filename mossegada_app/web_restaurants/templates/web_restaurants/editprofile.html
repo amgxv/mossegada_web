@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+<head>
+    {% block title %}
+    <title>Editar Perfil - Mossegada</title>
+    {% endblock %}
+</head>
+
+{% block content %}
+<div class="container">
+    <h1>Editar Perfil</h1>
+    <hr>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="font-weight-bold">
+            <!-- Es crea un formulari automàticament -->
+            {% bootstrap_form form %}
+        </div>
+        {% buttons %}
+        <!-- Botó submit -->
+        <button type="submit" class="btn btn-primary btn-m float-right mb-5">Edita</button>
+        {% endbuttons %}
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load bootstrap4 %}
+{% block title %}
+<title>Registre - Mossegada</title>
+{% endblock %}
+{% block content %}
+<div class="container center_forms">
+  <div class='row'>
+    <div class='col-sm-12 col-sm-offset-3'>
+      <h2 class='text-align-center'><strong>Registre</strong></h2><br/>
+      
+      <form method="post" class="font-weight-bold" action=".">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+        <input class='btn btn-block btn-primary' type="submit" value="{% trans 'Registrar-me' %}" />
+        {% endbuttons %}
+      </form>
+      
+      <hr/>
+      <div class='col-sm-6 col-sm-offset-3 text-align-center'>
+        <p>Ja tens compte? <a href="{% url 'auth_login' %}"> Inicia Sessió.</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

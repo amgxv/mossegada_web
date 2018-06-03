@@ -1,0 +1,1 @@
+{% load i18n %}{% trans "Activa el teu compte : " %} {{ site.name }}

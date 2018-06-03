@@ -1,0 +1,148 @@
+<!-- Extèn de la plantilla base.html -->
+{% extends "base.html" %}
+<head>
+    {% block title %}
+    <title>Mossegada - On pegam una mossegada?</title>
+    {% endblock %}
+</head>
+<body>
+    {% block content %}
+    <!-- Si hi ha restaurants... -->
+    {% if restaurants %}
+    <main role="main" class="container">
+        <div class="container">
+            <h1 class="my-4"> Pega una mossegada per...
+                <small>Mallorca</small>
+            </h1>
+            
+            <div class="row">
+                <!-- Per cada restaurant que hi troba... -->
+                {% for restaurant in restaurants %}
+                <div class="col-lg-4 col-sm-6 portfolio-item">
+                    <div class="card h-100">
+                        <a href="restaurant/{{ restaurant.id }}"><img id="imgg" class="card-img-top img-fluid"
+                            src='{% if restaurant.image %}
+                            {{ restaurant.image.url }}
+                            {% else %}
+                            null
+                            {% endif %}'
+                            alt="\"></a>
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    <a href="restaurant/{{ restaurant.id }}">{{ restaurant.name }}</a>
+                                </h4>
+                                <div class="row">
+                                    <div class="col-sm-12 mr-auto"><i class="material-icons align-bottom">place</i>{{ restaurant.address }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 mr-auto"><i class="material-icons align-bottom">restaurant_menu</i>{{ restaurant.typeR_fk }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 mr-auto"><i class="material-icons align-bottom">star</i>{{ restaurant.avg_rating|floatformat:2 }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Final del for -->
+                    {% endfor %}
+                </div>
+                <nav aria-label="Pagination">
+                    <ul class="pagination justify-content-end">
+                        
+                        <div class="filter_query pull-left ">
+                            <form method="get">
+                                <input type="hidden" name='page' value="{{ restaurants.number }}">
+                                <!-- Si hi ha qualque cerca... -->
+                                {% if request.GET.q %}
+                                <input type="hidden" name="q" value="{{ request.GET.q }}">
+                                {% endif %}
+                                
+                                <!-- 
+                                    Menu per seleccionar el filtrat de restaurants 
+                                    En numero del menu de selecció va canviant en funció del filtre que estigui actiu
+                                -->
+                                <select class="custom-select" name="res" onchange="form.submit();">
+                                    <option {% if request.GET.res == '3' %} selected {% else %}{% endif %} value="3">3</option>
+                                    <option {% if request.GET.res == '6' %} selected {% elif request.GET.res == queryfilter %} selected {% else %}{% endif %} value="6">6</option>
+                                    <option {% if request.GET.res == '9' %} selected {% else %}{% endif %} value="9">9</option>
+                                    <option {% if request.GET.res == '12' %} selected {% else %}{% endif %} value="12">12</option>
+                                </select>
+                                
+                            </form>
+                        </div>
+                        
+                        <!-- Botons del paginador -->
+                        {% if restaurants.has_previous %}
+                        <li class="page-item">
+                            <!-- Va a la primera pàgina -->  
+                            <a class="page-link" href="/?page=1{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}&res={{ request.GET.res }}">Primer</a>
+                        </li>
+                        <!-- Va a la pàgina anterior -->
+                        <li class="page-item">
+                            <a class="page-link" href="{{ prev_page }}">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Anterior</span>
+                            </a>
+                        </li>
+                        
+                        {% else %}
+                        <!-- Si no hi ha anterior, mostra un botó desactivat -->
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Anterior</span>
+                            </a>
+                        </li>
+                        {% endif %}
+                        
+                        
+                        {% if restaurants.has_previous %}
+                        <!-- Mostra el numero de la pàgina anterior -->
+                        <li class="page-item"><a class="page-link" href="{{ prev_page }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ restaurants.previous_page_number }}</a></li>
+                        {% endif %}
+                        
+                        <!-- Mostra el numero de la pàgina actual -->
+                        <li class="page-item disabled"><a class="page-link" href="#">{{ restaurants.number }}</a></li>
+                        
+                        
+                        {% if restaurants.has_next %}
+                        <!-- Mostra el numero de la pàgina següent -->
+                        <li class="page-item"><a class="page-link" href="{{ next_page }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ restaurants.next_page_number }}</a></li>
+                        {% endif %}
+                        
+                        {% if restaurants.has_next %}
+                        <li class="page-item">
+                            <!-- Va a la pàgina següent -->
+                            <a class="page-link" href="{{ next_page }}">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Següent</span>
+                            </a>
+                        </li>
+                        <!-- Va a la darrera pàgina -->
+                        <li class="page-item">
+                            <a class="page-link" href="/?page={{ restaurants.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}{% if request.GET.res %}&res={{ request.GET.res }}{% else %}&res=6{% endif %}">Darrer</a>
+                        </li>
+                        {% else %}
+                        <!-- Si no hi ha següent, mostra el botó desactivat -->
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Següent</span>
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+        </main>
+        
+        <!-- Si no troba cap restaurant, mostra una alerta -->
+        {% else %}
+        <div class="container">
+            <div class="alert alert-danger m-5" role="alert">
+                No restaurants available.
+            </div>
+        </div>
+        {% endif %}
+        {% endblock %}
+</body>

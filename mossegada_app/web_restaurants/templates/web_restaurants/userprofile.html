@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}
+<title>
+    <!-- Mostra el nom del usuari al títol -->
+    {% if user.is_authenticated %}
+    {{ user.username }}
+    {% endif %}
+    - Mossegada
+</title>
+{% endblock %}
+{% block content %}
+
+<!-- Si l'usuari s'ha autenticat mostra el perfil -->
+{% if user.is_authenticated %}
+<div class="container">
+    <h1>{{ user.username }}</h1>
+    <hr>
+    <!-- Se fan totes les comprovacions abans de mostrar cada valor del perfil -->
+    {% if user.profile_image %}
+    <div class="row">
+        <div class="col-sm-4">
+            <img class="img-fluid rounded-circle mx-auto d-block mt-4" src="{{ user.profile_image.url }}">
+        </div>
+        {% endif %}
+        <div class="col-sm-4">
+            <div class="ml-4 mt-4">
+                {% if user.first_name %}<p><b>Nom :</b> {{ user.first_name}}</p>{% endif %}
+                {% if user.last_name %}<p><b>Llinatges :</b> {{ user.last_name}}</p>{% endif %}
+                {% if user.email %}<p><b>Correu Electrònic :</b> {{ user.email}}</p>{% endif %}
+                {% if user.country %}<p><b>País :</b> {{ user.country.name }} <img src="{{ user.country.flag }}"></p>{% endif %}
+                {% if user.birthday %}<p><b>Aniversari :</b> {{ user.birthday }} </p>{% endif %}
+                {% if user.birthday %}<p><b>Edat :</b> {{ user.age }}</p>{% endif %}
+                
+                <!-- Si el perfil del usuari és el mateix del que ha iniciat la sessió, mostra els botons per editar el perfil i la contrasenya -->
+                {% if user.username == request.user.username %}
+                <a class="btn btn-warning" href="/accounts/password/reset" role="button">Canviar Contrasenya</a>
+                <a class="btn btn-info" href="/profile/{{ user.username }}/editprofile" role="button">Editar Perfil</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+<!-- Si no l'ha pogut carregar, mostra error -->
+<div class="alert alert-danger m-5" role="alert">
+    No s'ha pogut carregar el perfil
+</div>
+{% endif %}
+{% endblock %}

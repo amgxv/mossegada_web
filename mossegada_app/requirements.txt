@@ -1,0 +1,24 @@
+# Llibreria PostgreSQL
+psycopg2-binary
+# Django
+django
+# Plugin per Importar i Exportar des d'arxius
+django-import-export
+# Plugin per el registre d'usuaris
+django-registration-redux
+# Framework per API Rest
+djangorestframework
+# Suport per Markdown
+markdown
+# Llibreria necessaria per les imatges
+pillow
+# Servidor WSGI
+gunicorn
+gunicorn[gevent]
+# Llibreria per la xarxa
+gevent
+# Plugin de Bootstrap4
+django-bootstrap4
+# Plugin per afegir països
+django-countries
+

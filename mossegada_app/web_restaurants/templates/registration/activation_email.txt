@@ -1,0 +1,9 @@
+{% load i18n %}
+
+{% trans "Activa el teu compte a" %} {{ site.name }}:
+
+Hola,
+Fes click al següent enllaç per activar el teu compte.
+http://{{ site.domain }}{% url 'registration_activate' activation_key %}
+
+{% blocktrans %}Enllaç vàlid durant {{ expiration_days }} dies.{% endblocktrans %}

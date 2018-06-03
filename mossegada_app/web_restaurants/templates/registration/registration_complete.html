@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}
+<title>Registre Correcte - Mossegada</title>
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="alert alert-success" role="alert">
+        <p class='lead'>{% trans "T'has registrat correctament. Se t'ha enviat un mail amb un enllaç per activar el teu compte. Si no el tens a la safata d'entrada, comprova a la safata d'Spam." %}</p>
+    </div>
+</div>
+{% endblock %}

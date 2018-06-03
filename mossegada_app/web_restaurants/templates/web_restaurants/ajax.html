@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>AJAX - Mossegada</title>
+{% endblock %}
+{% block content %}
+<!-- Carga los datos del script -->
+<div class="container-fluid">
+    <div class="myRests"></div>
+</div>
+<script src="/static/js/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<!-- Script que obtiene los datos de la API, los carga en memoria, y luego los muestra en el cliente con una presentación "decente" -->
+<script>
+    $(document).ready(function () {
+        console.log($("#myTitle").html());
+        $.get("/api/restaurants", function (data) {
+            console.log(data);
+            var contentHtml = "<h2>Restaurantes Sacados Por Ajax</h2>";
+            $.each(data, function (index, value) {
+                var cell =
+                    "<div class='row center mt-2'>" +
+                    "<div class='col'>" +
+                    "<div class='media mt-5 ml-5'>" +
+                    "<img class='align-self-start mr-3 rounded-circle' src=" + value.image + " alt='Random Image' width='80' height='80'>" +
+                    "<div class='media-body ml-5'>" +
+                    "<a href='" + value.website + "'><h5 class='mt-0'>" + value.name + "</h5></a>" +
+                    "<p>" + value.address + "</p>" +
+                    "<p>" + value.typeR_fk.typeR + "</p>" +
+                    "<p>" + value.avg_rating + "</p>" +
+                    "<p>" + value.phone + "</p>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>"
+                ;
+                contentHtml += cell;
+            });
+            // Mete los datos en una clase
+            $(".myRests").html(contentHtml);
+            console.log("Load was performed.");
+        });
+    });
+</script>
+{% endblock %}

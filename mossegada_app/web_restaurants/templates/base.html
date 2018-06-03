@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load i18n %}
+{% load bootstrap4 %}
+{% block head %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}"/>
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Estilo CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/stylo.css' %}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Projecte Final - Restaurants">
+    <meta name="author" content="amgxv">
+    <!-- Favicon (generated with favicon-generator.org) -->
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'web_restaurants_resources/apple-icon-57x57.png' %}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'web_restaurants_resources/apple-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'web_restaurants_resources/apple-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'web_restaurants_resources/apple-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'web_restaurants_resources/apple-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'web_restaurants_resources/apple-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'web_restaurants_resources/apple-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'web_restaurants_resources/apple-icon-152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'web_restaurants_resources/apple-icon-180x180.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192"  href="{% static 'web_restaurants_resources/android-icon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'web_restaurants_resources/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'web_restaurants_resources/favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'web_restaurants_resources/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'web_restaurants_resources/manifest.json' %}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{% static 'web_restaurants_resources/ms-icon-144x144.png' %}">
+    <meta name="theme-color" content="#ffffff">
+    
+    {% block title %}
+    <title>Mossegada</title>
+    {% endblock %}
+</head>
+{% endblock %}
+<body>
+    {% block navbar %}
+    <!--Barra de navegació -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed navb">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <a class="navbar-brand" href="/">
+            Mossegada
+            <img src="{% static 'web_restaurants_resources/logo.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+        </a>
+        <!-- Enllaços -->        
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" href="/api">REST API</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/ajax">AJAX</a>
+            </li>
+        </ul>
+        <!-- Formulari de cerca -->
+        <form class="form-inline userdropdown" action="/">
+            <input class="form-control mr-sm-2" type="search" placeholder="Cerca un restaurant..." aria-label="Search" name="q" value="{{ request.GET.query }}">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="submit">Cercar</button>
+        </form>
+        
+        <!-- Menú Login / Dades Usuari -->
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <!-- Si l'usuari està autenticat, mostra el seu nom d'usuari -->
+                    {% if request.user.is_authenticated %} 
+                    {{ request.user.username }}
+                    {% else %}
+                    Login
+                    {% endif %}       
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <!-- Si l'usuari està autenticat, mostra el usuari (per anar al perfil), o el botó de tancar sessió -->
+                    {% if request.user.is_authenticated %}
+                    <a class="dropdown-item" href="/profile/{{ request.user.username }}">{{ request.user.username }}</a>
+                    <hr>
+                    <a class="dropdown-item" href="/accounts/logout">Tanca Sessió</a>
+                    <!-- Si no està autenticat, mostra opció a iniciar sessió o a registrar-se -->
+                    {% else %}
+                    <a class="dropdown-item" href="/accounts/login">Inicia Sessió</a>
+                    <hr>
+                    <a class="dropdown-item" href="/accounts/register">Registra't</a>
+                    {% endif %}
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+{% endblock %}
+
+
+{% block content %}
+<div class="alert alert-danger m-5" role="alert">
+    Error
+</div>
+{% endblock %}
+
+{% block bootstrap-js %}
+<!-- Scripts Bootstrap -->
+<script type="text/javascript" src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+{% endblock %}
+</body>
+</html>

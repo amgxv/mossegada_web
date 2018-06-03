@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load i18n %}
+{% load bootstrap4 %}
+
+{% block title %}
+    <title>Login - Mossegada</title>
+{% endblock %}
+
+{% block navbar %}{% endblock %}
+
+{% block content %}
+
+<!-- Si l'usuari està autenticat... -->
+{% if user.is_authenticated %}
+<script type="text/javascript">
+    (function () {
+        setTimeout(function () {
+            window.location = "/";
+        }, 0);
+    })();
+</script>
+
+<!-- En cas contrari... -->
+{% else %}
+
+<br>
+<div class="container formcontainer">
+    <a href="/"> <-- Tornar a la pàgina principal</a>
+    <div class="loginform_style">
+        <div class="font-weight-bold">
+            <img class="img-fluid text-center mx-auto d-block loginlogo" src="{% static 'web_restaurants_resources/logo.png' %}">
+            <form method="post" action=".">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+            </div>
+                {% buttons %}
+                    <button type="submit" value="login" class="btn btn-success float-right">Inicia Sessió</button>
+                {% endbuttons %}
+                <input type="hidden" name="next" value="{{ next }}" />
+            </form>
+        
+        <p>{% trans "Has oblidat la teva contrasenya" %}?
+        <a href="{% url 'auth_password_reset' %}">{% trans "Restablir" %}</a>!</p>
+        <p>{% trans "No tens compte" %}?
+        <a href="{% url 'registration_register' %}">{% trans "Registra't" %}</a>!</p>
+    </div>
+</div>
+        
+<!-- Fi del if -->
+{% endif %}
+{% endblock %}
+        

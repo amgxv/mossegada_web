@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}
+<title>Logout - Mossegada</title>
+{% endblock %}
+{% block navbar %}{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="logout_d">
+        <br>
+        <img class="img-fluid text-center mx-auto d-block logoutlogo" src="{% static 'web_restaurants_resources/logo.png' %}">
+        <h3><b>Sessió tancada correctament.</b></h3>
+        <h6>En 5 segons seràs redirigit a la pàgina principal.</h6>
+    </div>
+</div>
+
+<!-- Script que redirigeix a la pàgina principal -->
+<script type="text/javascript">
+    (function () {
+        setTimeout(function () {
+            window.location = "/";
+        }, 5000);
+    })();
+</script>
+{% endblock %}
