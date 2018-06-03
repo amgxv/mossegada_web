@@ -177,7 +177,7 @@ EMAIL_USE_TLS = False
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 ## Email d'enviament de correus
-DEFAULT_FROM_EMAIL = "noreply@" + os.environ.get('WEB_HOST', ''),
+DEFAULT_FROM_EMAIL = "noreply@" + os.environ.get('WEB_HOST', '')
 
 ## Fa que no s'esperi un template HTML com a Email d'activació.
 ## En aquest cas empram "templates/activation_email.txt"
@@ -187,4 +187,4 @@ REGISTRATION_EMAIL_HTML = False
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 ## Maps API key
-GOOGLE_MAPS_API = os.environ.get('GMAPS_API', ''),
+GOOGLE_MAPS_API = os.environ.get('GMAPS_API', '')
