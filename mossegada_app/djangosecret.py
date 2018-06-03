@@ -10,11 +10,11 @@ import random
 #import fileinput
 
 # Get ascii Characters numbers and punctuation (minus quote characters as they could terminate string).
-chars = ''.join([string.ascii_letters, string.digits, 
-string.punctuation]).replace('\'', '').replace('"', '').replace('\\', 
+chars = ''.join([string.ascii_letters, string.digits,
+string.punctuation]).replace('\'', '').replace('"', '').replace('\\',
 '')
 
-SECRET_KEY = ''.join([random.SystemRandom().choice(chars) for i in 
+SECRET_KEY = ''.join([random.SystemRandom().choice(chars) for i in
 range(50)])
 
 with open("RestaurantsProject/settings.py") as f:
@@ -22,5 +22,3 @@ with open("RestaurantsProject/settings.py") as f:
 
 with open("RestaurantsProject/settings.py", "w") as f:
 	f.write(newText)
-
-print(SECRET_KEY)

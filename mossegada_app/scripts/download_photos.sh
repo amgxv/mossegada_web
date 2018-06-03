@@ -1,7 +1,10 @@
 #!/bin/bash
 
+# Gets the folder path
+SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
+
 ## Download the files
-wget -i photolinks
+wget -i "$SCRIPTPATH/photolinks"
 
 ## Rename the files
 mv arroz-de-bacalao-i.jpg canprim-1.jpg

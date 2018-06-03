@@ -1,19 +1,19 @@
-id,name,address,latitude,longitude,website,phone,typeR_fk,image
-37,El Rincón de Sanlúcar de Barrameda,"C/ Ocells 33, 07011 Palma de Mallorca",39.582917,2.633544,www.facebook.com/elrincon.desanlucar,678546133,22,restaurant_images/cansito1.jpg
-36,Bar Nou,"Carrer Major 7, 07196 Es Capdella",39.579058,2.469745,,971233170,20,restaurant_images/barnou1.jpg
-35,Cafe Sa Plaça de Galilea,"Plaça Pius XII, 4, Galilea 07195",39.608647,2.505515,https://www.facebook.com/CafeSaPlacaDeGalilea/,971147206,20,restaurant_images/placagalilea.jpg
-34,Horapa Thai Kitchen,"Avenida Argentina 9, 07013 Palma de Mallorca, Mallorca, Spain",39.569970,2.639163,http://www.horapathaikitchen.es/,971282227,36,restaurant_images/horapa.jpg
-33,Sa Llimona,"C/ Sant Magí, 80, 07013 Palma de Mallorca",39.570580,2.635741,http://sallimona.wobiz.com.es/,971280023,20,restaurant_images/llimona.jpg
-32,La Perla de la Habana,"C/Caro 5, 07013 Palma de Mallorca",39.572659,2.639651,https://www.facebook.com/perlahabanamallorca,608666182,33,restaurant_images/perla1.jpg
-31,Bottega Bay Rocks and Stones,"Carretera Andratx 34, Portals Nous 07181",39.535956,2.570836,http://www.bottegabay.com/,871904572,31,restaurant_images/bottegabay1.jpg
-30,Restaurante Bar Andaluz,"C/ Quarter 23, S'Arenal, Palma 07600",39.507354,2.753447,http://www.barandaluz.com/,971268018,20,restaurant_images/barandaluz.jpg
-29,Taste Of India Paseo Marítimo,"Avenida Gabriel Roca 15, 07014 Palma de Mallorca",39.567638,2.629955,http://www.tasteofindia.es/restaurante-paseo-maritimo/,971917702,30,restaurant_images/tasteindia.jpg
-28,Restaurante Asturiano El Norte Sidrería,"Carrer de la Amistat, 42, Islas Baleares, 07500, Manacor",39.570715,3.211102,http://restaurante-asturiano-el-norte-sidreria.eltenedor.rest/en_GB/,607604878,22,restaurant_images/norte.jpg
-27,Bar Can Prim,"Plaça Bernat de Santa Eugènia, 4, 07142 Santa Eugenia",39.622558,2.836645,http://www.barcanprim.com/,971144408,20,restaurant_images/canprim-1.jpg
-26,Es Cruce,"Carretera Palma - Manacor, km 41, 07250 Vilafranca de Bonany ",39.574883,3.120431,http://restaurantescruce.es/principal.htm,971840382,20,restaurant_images/cruce.jpg
-25,Can Paco,"C/Constitució 18, 07191 Banyalbufar",39.688173,2.514414,http://mesoncanpaco.com/es/,971618148,20,restaurant_images/canpaco.jpg
-24,Primo Taquería,"C/La Fábrica, 29, 07013 Palma de Mallorca",39.572349,2.638459,https://www.facebook.com/primotaqueriamallorca/,632516616,28,restaurant_images/primo.jpg
-23,BROX kitchen & drinks,"Avenida Argentina 25, 07013 Palma de Mallorca",39.570904,2.639549,http://broxpalma.com/,971106676,26,restaurant_images/brox1.jpg
-22,500 Grados,"C/Felix Meravelles, 6 07003 Palma de Mallorca ",39.578350,2.651603,https://www.facebook.com/Pizzeria-500-Grados-1629784263951464,871805696,24,restaurant_images/500grados.jpg
-21,The Rose Bistro,"Calle Travesía 16, 07194 Puigpunyent, Mallorca, Spain",39.622792,2.527415,https://www.facebook.com/TheRoseRestaurantPuigpunyent,971614360,20,restaurant_images/therose.jpg
-20,La Vila,"Carretera Galilea 1, Puigpunyent 07194, Mallorca, Spain",39.621775,2.526970,,971614108,20,restaurant_images/lavila.jpg
+id;name;address;latitude;longitude;website;phone;typeR_fk;image
+37;El Rincón de Sanlúcar de Barrameda;C/ Ocells 33, 07011 Palma de Mallorca;39.582917;2.633544;www.facebook.com/elrincon.desanlucar;678546133;22;restaurant_images/cansito1.jpg
+36;Bar Nou;Carrer Major 7, 07196 Es Capdella;39.579058;2.469745;;971233170;20;restaurant_images/barnou1.jpg
+35;Cafe Sa Plaça de Galilea;Plaça Pius XII, 4, Galilea 07195;39.608647;2.505515;https://www.facebook.com/CafeSaPlacaDeGalilea/;971147206;20;restaurant_images/placagalilea.jpg
+34;Horapa Thai Kitchen;Avenida Argentina 9, 07013 Palma de Mallorca, Mallorca, Spain;39.569970;2.639163;http://www.horapathaikitchen.es/;971282227;36;restaurant_images/horapa.jpg
+33;Sa Llimona;C/ Sant Magí, 80, 07013 Palma de Mallorca;39.570580;2.635741;http://sallimona.wobiz.com.es/;971280023;20;restaurant_images/llimona.jpg
+32;La Perla de la Habana;C/Caro 5, 07013 Palma de Mallorca;39.572659;2.639651;https://www.facebook.com/perlahabanamallorca;608666182;33;restaurant_images/perla1.jpg
+31;Bottega Bay Rocks and Stones;Carretera Andratx 34, Portals Nous 07181;39.535956;2.570836;http://www.bottegabay.com/;871904572;31;restaurant_images/bottegabay1.jpg
+30;Restaurante Bar Andaluz;C/ Quarter 23, S'Arenal, Palma 07600;39.507354;2.753447;http://www.barandaluz.com/;971268018;20;restaurant_images/barandaluz.jpg
+29;Taste Of India Paseo Marítimo;Avenida Gabriel Roca 15, 07014 Palma de Mallorca;39.567638;2.629955;http://www.tasteofindia.es/restaurante-paseo-maritimo/;971917702;30;restaurant_images/tasteindia.jpg
+28;Restaurante Asturiano El Norte Sidrería;Carrer de la Amistat, 42, Islas Baleares, 07500, Manacor;39.570715;3.211102;http://restaurante-asturiano-el-norte-sidreria.eltenedor.rest/en_GB/;607604878;22;restaurant_images/norte.jpg
+27;Bar Can Prim;Plaça Bernat de Santa Eugènia, 4, 07142 Santa Eugenia;39.622558;2.836645;http://www.barcanprim.com/;971144408;20;restaurant_images/canprim-1.jpg
+26;Es Cruce;Carretera Palma - Manacor, km 41, 07250 Vilafranca de Bonany;39.574883;3.120431;http://restaurantescruce.es/principal.htm;971840382;20;restaurant_images/cruce.jpg
+25;Can Paco;C/Constitució 18, 07191 Banyalbufar;39.688173;2.514414;http://mesoncanpaco.com/es/;971618148;20;restaurant_images/canpaco.jpg
+24;Primo Taquería;C/La Fábrica, 29, 07013 Palma de Mallorca;39.572349;2.638459;https://www.facebook.com/primotaqueriamallorca/;632516616;28;restaurant_images/primo.jpg
+23;BROX kitchen & drinks;Avenida Argentina 25, 07013 Palma de Mallorca;39.570904;2.639549;http://broxpalma.com/;971106676;26;restaurant_images/brox1.jpg
+22;500 Grados;C/Felix Meravelles, 6 07003 Palma de Mallorca;39.578350;2.651603;https://www.facebook.com/Pizzeria-500-Grados-1629784263951464;871805696;24;restaurant_images/500grados.jpg
+21;The Rose Bistro;Calle Travesía 16, 07194 Puigpunyent, Mallorca, Spain;39.622792;2.527415;https://www.facebook.com/TheRoseRestaurantPuigpunyent;971614360;20;restaurant_images/therose.jpg
+20;La Vila;Carretera Galilea 1, Puigpunyent 07194, Mallorca, Spain;39.621775;2.526970;;971614108;20;restaurant_images/lavila.jpg

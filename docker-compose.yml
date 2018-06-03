@@ -17,16 +17,13 @@ services:
       - "traefik.backend=nginx"
       - "traefik.frontend.rule=Host:'HOST'"
     volumes:
-      - ./mossegada_app:/mossegada_app
-      - ./config/nginx/:/etc/nginx/conf.d/
-      - /mossegada_app/RestaurantsProject/staticfiles:/static
-      - /mossegada_app/RestaurantsProject/web_restaurants/media:/media
-    depends_on:
-      - django
+      - ./config/nginx/:/etc/nginx/conf.d/:ro
+      - mossegada_static:/static
+      - mossegada_media:/media
 ## DJANGO
   django:
     image: amgxv/mossegada_web
-    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic --noinput && gunicorn -k gevent RestaurantsProject.wsgi -b 0.0.0.0:8000"
+    command: bash -c "python djangosecret.py && python manage.py migrate && gunicorn -k gevent RestaurantsProject.wsgi -b 0.0.0.0:8000"
     environment:
       - DB_NAME='DATABASE'
       - DB_USER='USERNAME'
@@ -41,9 +38,8 @@ services:
     depends_on:
       - postgres
     volumes:
-      - ./mossegada_app:/mossegada_app
-      - /mossegada_app/RestaurantsProject/staticfiles:/static
-      - /mossegada_app/RestaurantsProject/web_restaurants/media:/media
+      - mossegada_static:/mossegada_app/staticfiles
+      - mossegada_media:/web_restaurants/media/
 ## SMTP
   smtp:
     image: catatnight/postfix
@@ -56,8 +52,13 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./traefik/traefik.toml:/etc/traefik/traefik.toml:ro
-      - ./traefik/acme:/etc/traefik/acme
+      - traefic_acme:/etc/traefik/acme
     ports:
      - "80:80"
      - "443:443"
      - "8080:8080"
+
+volumes:
+  mossegada_static:
+  mossegada_media:
+  traefic_acme:
