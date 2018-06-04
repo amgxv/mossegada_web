@@ -1,0 +1,106 @@
+version: '3.3'  
+services:
+## POSTGRES DATABASE  
+  postgres:
+    image: postgres:latest
+    environment:
+      - POSTGRES_DB='DATABASE'
+      - POSTGRES_USER='USERNAME'
+      - POSTGRES_PASSWORD='PASSWORD'
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: any
+    networks:
+      - traefik 
+
+## NGINX-REVERSE
+  nginx:
+    image: nginx:latest
+    networks:
+      - traefik
+    deploy:
+      replicas: 2
+      labels:
+        - "traefik.port=80"
+        - "traefik.docker.network=traefik"
+        - "traefik.frontend.rule=Host:'HOST'"
+        - "traefik.backend.loadbalancer.sticky=true"
+      restart_policy:
+        condition: any
+    volumes:
+      - ./config/nginx/:/etc/nginx/conf.d/:ro
+      - mossegada_static:/static
+      - mossegada_media:/media
+    networks:
+      - traefik
+
+## DJANGO
+  django:
+    image: amgxv/mossegada_web
+    command: bash -c "python djangosecret.py && python manage.py migrate && gunicorn -k gevent RestaurantsProject.wsgi -b 0.0.0.0:8000"
+    environment:
+      - DB_NAME='DATABASE'
+      - DB_USER='USERNAME'
+      - DB_PASS='PASSWORD'
+      - DB_HOST='HOSTNAME'
+      - DB_PORT='PORT'
+      - SMTP_HOST='SMTP'
+      - SMTP_USER='USER'
+      - SMTP_PASS='PASSWORD'
+      - WEB_HOST='HOST'
+      - GMAPS_API='API_KEY'
+    depends_on:
+      - postgres
+    volumes:
+      - mossegada_static:/mossegada_app/staticfiles
+      - mossegada_media:/web_restaurants/media/
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: any
+    networks:
+      - traefik
+
+## SMTP
+  smtp:
+    image: catatnight/postfix
+    environment:
+      - maildomain='DOMAIN'
+      - smtp_user='USERNAME:PASSWORD'
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: any
+    networks:
+      - traefik
+
+## TRAEFIK
+  traefik:
+    image: traefik
+    command: --web --docker --docker.swarmmode --docker.watch --logLevel=DEBUG
+    networks:
+      - traefik
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik/traefik.toml:/etc/traefik/traefik.toml:ro
+      - traefic_acme:/etc/traefik/acme
+    ports:
+     - "80:80"
+     - "443:443"
+#     - "8080:8080" #Port for web dashboard
+    deploy:
+      replicas: 2
+      placement:
+        constraints: [node.role==manager]
+      restart_policy:
+        condition: on-failure
+
+volumes:
+  mossegada_static:
+  mossegada_media:
+  traefic_acme:
+
+networks:
+  traefik:
+    driver: overlay
