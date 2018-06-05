@@ -37,7 +37,7 @@ services:
 
 ## DJANGO
   django:
-    image: amgxv/mossegada_web
+    image: amgxv/mossegada_web:latest
     command: bash -c "python djangosecret.py && python manage.py migrate && gunicorn -k gevent RestaurantsProject.wsgi -b 0.0.0.0:8000"
     environment:
       - DB_NAME='DATABASE'
@@ -83,7 +83,7 @@ services:
       - traefik
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./traefik/traefik.toml:/etc/traefik/traefik.toml:ro
+      - ./traefik-swarm/traefik.toml:/etc/traefik/traefik.toml:ro
       - traefic_acme:/etc/traefik/acme
     ports:
      - "80:80"
