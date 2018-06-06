@@ -17,8 +17,6 @@ services:
 ## NGINX-REVERSE
   nginx:
     image: nginx:latest
-    networks:
-      - traefik
     deploy:
       replicas: 2
       labels:
