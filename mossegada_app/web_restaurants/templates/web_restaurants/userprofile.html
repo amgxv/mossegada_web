@@ -33,7 +33,7 @@
                 
                 <!-- Si el perfil del usuari és el mateix del que ha iniciat la sessió, mostra els botons per editar el perfil i la contrasenya -->
                 {% if user.username == request.user.username %}
-                <a class="btn btn-warning" href="/accounts/password/reset" role="button">Canviar Contrasenya</a>
+                <a class="btn btn-warning mb-2" href="/accounts/password/reset" role="button">Canviar Contrasenya</a>
                 <a class="btn btn-info" href="/profile/{{ user.username }}/editprofile" role="button">Editar Perfil</a>
                 {% endif %}
             </div>
