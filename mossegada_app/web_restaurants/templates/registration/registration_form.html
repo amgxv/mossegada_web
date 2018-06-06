@@ -13,6 +13,8 @@
       <form method="post" class="font-weight-bold" action=".">
         {% csrf_token %}
         {% bootstrap_form form %}
+        <div class="container mb-2"><small></small><ul><small><li>Les teves dades s'empraràn per crear un perfil públic. No es mostrarà la teva adreça electrònica</li><li>En cap moment s'emprarà el correu electrònic amb finalitats comercials, ni per fer Spam</li><li>El teu correu electrònic únicament s'emprarà per la funcionalitat de la web, és a dir pels registres i els canvis de contrasenya</li></small>
+        </ul></div>
         {% buttons %}
         <input class='btn btn-block btn-primary' type="submit" value="{% trans 'Registrar-me' %}" />
         {% endbuttons %}
