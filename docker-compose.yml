@@ -39,7 +39,7 @@ services:
       - postgres
     volumes:
       - mossegada_static:/mossegada_app/staticfiles
-      - mossegada_media:/web_restaurants/media/
+      - mossegada_media:/mossegada_app/web_restaurants/media/
 ## SMTP
   smtp:
     image: catatnight/postfix
