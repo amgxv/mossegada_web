@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}
+<!-- Mostra el nom del usuari al títol -->
 <title>
-    <!-- Mostra el nom del usuari al títol -->
     {% if user.is_authenticated %}
     {{ user.username }}
     {% endif %}
