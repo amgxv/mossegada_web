@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-{% block title %}
 <!-- Mostra el nom del usuari al títol -->
+{% block title %}
 <title>
     {% if user.is_authenticated %}
     {{ user.username }}
@@ -26,7 +26,7 @@
             <div class="ml-4 mt-4">
                 {% if user.first_name %}<p><b>Nom :</b> {{ user.first_name}}</p>{% endif %}
                 {% if user.last_name %}<p><b>Llinatges :</b> {{ user.last_name}}</p>{% endif %}
-                {% if user.email %}<p><b>Correu Electrònic :</b> {{ user.email}}</p>{% endif %}
+                {% if user.username == request.user.username %}<p><b>Correu Electrònic :</b> {{ user.email}}</p>{% endif %}
                 {% if user.country %}<p><b>País :</b> {{ user.country.name }} <img src="{{ user.country.flag }}"></p>{% endif %}
                 {% if user.birthday %}<p><b>Aniversari :</b> {{ user.birthday }} </p>{% endif %}
                 {% if user.birthday %}<p><b>Edat :</b> {{ user.age }}</p>{% endif %}
