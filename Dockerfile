@@ -17,5 +17,5 @@ RUN mkdir /mossegada_app && mkdir -p /web_restaurants/media/restaurant_images
 COPY ./mossegada_app /mossegada_app/
 WORKDIR /mossegada_app
 
-RUN pip install -r requirements.txt && python manage.py collectstatic --noinput && python djangosecret.py
+RUN pip install -r requirements.txt && python manage.py collectstatic --noinput
 RUN scripts/download_photos.sh
