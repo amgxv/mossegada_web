@@ -188,3 +188,14 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 ## Maps API key
 GOOGLE_MAPS_API = os.environ.get('GMAPS_API', '')
+
+##Redis Session
+SESSION_ENGINE = 'redis_sessions.session'
+
+SESSION_REDIS = {
+    'host': os.environ.get('REDIS_HOST', 'redis'),
+    'port': 6379,
+    'db': 0,
+    'prefix': 'session',
+    'socket_timeout': 1
+}
