@@ -27,4 +27,5 @@ mv restaurante-es-cruce.jpg cruce.jpg
 mv terraza-exterior-con.jpg tasteindia.jpg
 
 ## Copy all .jpg to media/images folder
-mv *.jpg -t ../web_restaurants/media/restaurant_images
+mkdir "../web_restaurants/media/restaurant_images"
+mv *.jpg -t "../web_restaurants/media/restaurant_images"
