@@ -48,6 +48,7 @@ services:
       - SMTP_PASS='PASSWORD'
       - WEB_HOST='HOST'
       - GMAPS_API='API_KEY'
+      - REDIS_HOST='HOSTNAME'
     depends_on:
       - postgres
     volumes:
