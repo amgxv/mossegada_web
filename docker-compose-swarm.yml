@@ -73,6 +73,16 @@ services:
     networks:
       - traefik
 
+## REDIS
+  redis:
+    image: redis
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: any
+    networks:
+      - traefik
+
 ## TRAEFIK
   traefik:
     image: traefik
