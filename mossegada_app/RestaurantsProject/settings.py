@@ -193,7 +193,7 @@ GOOGLE_MAPS_API = os.environ.get('GMAPS_API', '')
 SESSION_ENGINE = 'redis_sessions.session'
 
 SESSION_REDIS = {
-    'host': os.environ.get('REDIS_HOST', 'redis'),
+    'host': os.environ.get('REDIS_HOST', ''),
     'port': 6379,
     'db': 0,
     'prefix': 'session',
