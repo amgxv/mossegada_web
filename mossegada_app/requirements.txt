@@ -21,4 +21,6 @@ gevent
 django-bootstrap4
 # Plugin per afegir països
 django-countries
+# Plugin per redis
+django-redis-sessions
 
