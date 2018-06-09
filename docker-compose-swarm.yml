@@ -3,6 +3,8 @@ services:
 ## POSTGRES DATABASE  
   postgres:
     image: postgres:latest
+    volumes:
+      - postgres_vol:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB='DATABASE'
       - POSTGRES_USER='USERNAME'
@@ -100,6 +102,7 @@ volumes:
   mossegada_media:
   mossegada_app_p:
   traefic_acme:
+  postgres_vol:
 
 networks:
   traefik:
