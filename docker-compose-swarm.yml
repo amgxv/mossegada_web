@@ -48,10 +48,10 @@ services:
       - SMTP_PASS='PASSWORD'
       - WEB_HOST='HOST'
       - GMAPS_API='API_KEY'
-      - REDIS_HOST='HOSTNAME'
     depends_on:
       - postgres
     volumes:
+      - mossegada_app_p:/mossegada_app/RestaurantsProject
       - mossegada_static:/mossegada_app/staticfiles
       - mossegada_media:/mossegada_app/web_restaurants/media/
     deploy:
@@ -67,16 +67,6 @@ services:
     environment:
       - maildomain='DOMAIN'
       - smtp_user='USERNAME:PASSWORD'
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: any
-    networks:
-      - traefik
-
-## REDIS
-  redis:
-    image: redis
     deploy:
       replicas: 1
       restart_policy:
@@ -108,6 +98,7 @@ services:
 volumes:
   mossegada_static:
   mossegada_media:
+  mossegada_app_p:
   traefic_acme:
 
 networks:
