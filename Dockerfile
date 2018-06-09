@@ -11,7 +11,6 @@ SMTP_HOST=smtp \
 SMTP_USER=username \
 SMTP_PASS=password \
 WEB_HOST=localhost \
-REDIS_HOST=redishost \
 GMAPS_API=api
 
 RUN mkdir /mossegada_app && mkdir -p /web_restaurants/media/restaurant_images
