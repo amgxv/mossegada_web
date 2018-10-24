@@ -13,6 +13,9 @@ SMTP_PASS=password \
 SMTP_PORT=25 \
 SMTP_USE_TLS=False \
 DEFAULT_FROM_EMAIL=noreply@localhost.com \
+REDIS_HOST=localhost \
+REDIS_PORT=6379 \
+REDIS_DB=1 \
 GMAPS_API=api 
 
 RUN mkdir /mossegada_app && mkdir -p /web_restaurants/media/restaurant_images

@@ -35,6 +35,9 @@ services:
       - SMTP_PASS='PASSWORD'
       - SMTP_PORT='PORT'
       - SMTP_USE_TLS='False'
+      - REDIS_HOST='HOST'
+      - REDIS_PORT='PORT'
+      - REDIS_DB='DB'
       - DEFAULT_FROM_EMAIL='noreply@localhost.com'
       - GMAPS_API='API_KEY'
     depends_on:

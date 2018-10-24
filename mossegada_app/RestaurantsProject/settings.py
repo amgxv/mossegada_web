@@ -189,3 +189,19 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ## Maps API key
 GOOGLE_MAPS_API = os.environ.get('GMAPS_API', '')
 
+## Configuració caché Redis
+
+REDIS_HOST = os.environ.get('REDIS_HOST', 'localhost')
+REDIS_PORT = os.environ.get('REDIS_PORT', 6379)
+REDIS_DB = os.environ.get('REDIS_DB', 1)
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": ("redis://{REDIS_HOST}:{REDIS_PORT}/{REDIS_DB}").format(REDIS_HOST=REDIS_HOST, REDIS_PORT=REDIS_PORT ,REDIS_DB=REDIS_DB)
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
