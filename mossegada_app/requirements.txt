@@ -1,24 +1,24 @@
 # Llibreria PostgreSQL
-psycopg2-binary
+psycopg2-binary==2.7.5
 # Django
-django
+django==2.0.6
 # Plugin per Importar i Exportar des d'arxius
-django-import-export
+django-import-export==1.0.1
 # Plugin per el registre d'usuaris
-django-registration-redux
+django-registration-redux==2.4
 # Framework per API Rest
-djangorestframework
+djangorestframework==3.8.2
 # Suport per Markdown
-markdown
+markdown==2.6.11
 # Llibreria necessaria per les imatges
-pillow
+pillow==5.1.0
 # Servidor WSGI
-gunicorn
+gunicorn==19.8.1
 gunicorn[gevent]
 # Llibreria per la xarxa
-gevent
+gevent==1.3.3
 # Plugin de Bootstrap4
-django-bootstrap4
+django-bootstrap4==0.0.6
 # Plugin per afegir països
-django-countries
+django-countries==5.3
 

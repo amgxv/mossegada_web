@@ -170,14 +170,14 @@ EMAIL_HOST_USER = os.environ.get('SMTP_USER', '')
 EMAIL_HOST_PASSWORD = os.environ.get('SMTP_PASS', '')
 
 ## Ports i ús de TLS (no s'empra)
-EMAIL_PORT = 25
-EMAIL_USE_TLS = False
+EMAIL_PORT = os.environ.get('SMTP_PORT', 25)
+EMAIL_USE_TLS = os.environ.get('SMTP_USE_TLS', 'False')
 
 ## Backend de l'Email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 ## Email d'enviament de correus
-DEFAULT_FROM_EMAIL = "noreply@" + os.environ.get('WEB_HOST', '')
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', '')
 
 ## Fa que no s'esperi un template HTML com a Email d'activació.
 ## En aquest cas empram "templates/activation_email.txt"

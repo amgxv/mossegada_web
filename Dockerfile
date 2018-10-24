@@ -10,8 +10,10 @@ DB_PORT=5432 \
 SMTP_HOST=smtp \
 SMTP_USER=username \
 SMTP_PASS=password \
-WEB_HOST=localhost \
-GMAPS_API=api
+SMTP_PORT=25 \
+SMTP_USE_TLS=False \
+DEFAULT_FROM_EMAIL=noreply@localhost.com \
+GMAPS_API=api 
 
 RUN mkdir /mossegada_app && mkdir -p /web_restaurants/media/restaurant_images
 COPY ./mossegada_app /mossegada_app/

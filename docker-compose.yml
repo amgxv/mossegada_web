@@ -33,13 +33,18 @@ services:
       - SMTP_HOST='SMTP'
       - SMTP_USER='USER'
       - SMTP_PASS='PASSWORD'
-      - WEB_HOST='HOST'
+      - SMTP_PORT='PORT'
+      - SMTP_USE_TLS='False'
+      - DEFAULT_FROM_EMAIL='noreply@localhost.com'
       - GMAPS_API='API_KEY'
     depends_on:
       - postgres
     volumes:
       - mossegada_static:/mossegada_app/staticfiles
       - mossegada_media:/mossegada_app/web_restaurants/media/
+## REDIS
+  redis:
+    image: redis:alpine
 ## SMTP
   smtp:
     image: catatnight/postfix
