@@ -1,6 +1,4 @@
-FROM python:3.6.5
-
-ENV PYTHONUNBUFFERED 1
+FROM python:3.6.5-alpine
 
 ENV DB_NAME=postgres \
 DB_USER=postgres \
@@ -18,9 +16,8 @@ REDIS_PORT=6379 \
 REDIS_DB=1 \
 GMAPS_API=api 
 
-RUN mkdir /mossegada_app && mkdir -p /web_restaurants/media/restaurant_images
+RUN mkdir /mossegada_app
 COPY ./mossegada_app /mossegada_app/
 WORKDIR /mossegada_app
 
 RUN pip install -r requirements.txt && python manage.py collectstatic --noinput
-RUN scripts/download_photos.sh
