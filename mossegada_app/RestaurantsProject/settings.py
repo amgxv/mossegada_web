@@ -84,6 +84,25 @@ WSGI_APPLICATION = 'RestaurantsProject.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 
+## Configuració caché Redis
+
+REDIS_HOST = os.environ.get('REDIS_HOST', 'localhost')
+REDIS_PORT = os.environ.get('REDIS_PORT', 6379)
+REDIS_DB = os.environ.get('REDIS_DB', 1)
+
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_CACHE_ALIAS = "default"
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': ('redis://{REDIS_HOST}:{REDIS_PORT}/{REDIS_DB}').format(REDIS_HOST=REDIS_HOST, REDIS_PORT=REDIS_PORT ,REDIS_DB=REDIS_DB),
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
+    }
+}
+
 ### Database (local)
 DATABASES = {
     'default': {
@@ -189,18 +208,3 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ## Maps API key
 GOOGLE_MAPS_API = os.environ.get('GMAPS_API', '')
 
-## Configuració caché Redis
-
-REDIS_HOST = os.environ.get('REDIS_HOST', 'localhost')
-REDIS_PORT = os.environ.get('REDIS_PORT', 6379)
-REDIS_DB = os.environ.get('REDIS_DB', 1)
-
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": ("redis://{REDIS_HOST}:{REDIS_PORT}/{REDIS_DB}").format(REDIS_HOST=REDIS_HOST, REDIS_PORT=REDIS_PORT ,REDIS_DB=REDIS_DB),
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        }
-    }
-}
