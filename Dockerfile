@@ -1,4 +1,4 @@
-FROM python:3.6.5-alpine
+FROM python:3.6.5-slim
 
 ENV DB_NAME=postgres \
 DB_USER=postgres \
