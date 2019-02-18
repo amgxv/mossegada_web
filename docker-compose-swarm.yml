@@ -2,7 +2,7 @@ version: '3.3'
 services:
 ## POSTGRES DATABASE  
   postgres:
-    image: postgres:latest
+    image: postgres:10-alpine
     volumes:
       - postgres_vol:/var/lib/postgresql/data
     environment:
@@ -18,7 +18,7 @@ services:
 
 ## NGINX-REVERSE
   nginx:
-    image: nginx:latest
+    image: nginx:alpine
     deploy:
       replicas: 2
       labels:
@@ -57,6 +57,7 @@ services:
       - GMAPS_API='API_KEY'
     depends_on:
       - postgres
+    ## Please, consider using mappings.
     volumes:
       - mossegada_app_p:/mossegada_app/RestaurantsProject
       - mossegada_static:/mossegada_app/staticfiles
@@ -83,7 +84,7 @@ services:
 
 ## TRAEFIK
   traefik:
-    image: traefik
+    image: traefik:alpine
     command: --web --docker --docker.swarmmode --docker.watch --logLevel=DEBUG
     networks:
       - traefik
