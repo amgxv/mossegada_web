@@ -24,6 +24,7 @@ https://docs.djangoproject.com/en/2.0/topics/http/views/
 '''
 
 ## Funció per la vista de la pàgina principal
+@cache_page(60 * 15)
 def home(request):
     ## Variable amb la plantilla a renderitzar
     template = 'web_restaurants/home.html'
@@ -85,6 +86,7 @@ def home(request):
     return render(request, template, context)
 
 ## Funció per la vista un restaurant concret. A més de la petició també se li passa la ID del restaurant concret.
+@cache_page(60 * 15)
 def restaurant(request, restaurant_id):
 
     # Plantilla a renderitzar
