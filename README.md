@@ -6,7 +6,7 @@ Projecte Final del FP Administració de Sistemes Informàtics en Xarxa
 
 ---
 
-## [DEMO](https://mossegada.amgxv.tech)
+## [DEMO](https://mossegada.amgxv.com)
 
 
 ## Com deplegar el projecte?
