@@ -23,5 +23,5 @@ django-bootstrap4==0.0.6
 django-countries==5.3
 # Redis
 django-redis==4.9.0
-redis==2.10.0
+redis==2.10.6
 
