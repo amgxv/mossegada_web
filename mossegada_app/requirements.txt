@@ -1,7 +1,7 @@
 # Llibreria PostgreSQL
 psycopg2-binary==2.7.5
 # Django
-django==2.0.13
+django==2.2.13
 # Plugin per Importar i Exportar des d'arxius
 django-import-export==1.0.1
 # Plugin per el registre d'usuaris
