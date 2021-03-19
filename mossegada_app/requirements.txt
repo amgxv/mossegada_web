@@ -7,7 +7,7 @@ django-import-export==1.0.1
 # Plugin per el registre d'usuaris
 django-registration-redux==2.4
 # Framework per API Rest
-djangorestframework==3.10.3
+djangorestframework==3.11.2
 # Suport per Markdown
 markdown==2.6.11
 # Llibreria necessaria per les imatges
