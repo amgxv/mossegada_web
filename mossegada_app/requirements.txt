@@ -11,7 +11,7 @@ djangorestframework==3.10.3
 # Suport per Markdown
 markdown==2.6.11
 # Llibreria necessaria per les imatges
-pillow==6.2.0
+pillow==8.2.0
 # Servidor WSGI
 gunicorn==19.8.1
 gunicorn[gevent]
